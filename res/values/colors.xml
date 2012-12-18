@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="package_line_item_color_code">#333333</color>
+    <color name="package_line_item_color_description">#33B4E5</color>
+    <color name="package_line_item_color_status">#FF3300</color>
+    <color name="package_line_item_color_selected">#DDDDDD</color>
+    <color name="package_line_item_color_default">#FF3300</color>
+
+</resources>

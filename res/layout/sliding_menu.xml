@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3F4241"
+    android:gravity="center_vertical|center_horizontal" >
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/sm_textview_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/logo"
+        android:text="@string/app_name"
+        android:textColor="#0087BB"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/sm_textview_followus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/logo"
+        android:layout_below="@+id/sm_textview_title"
+        android:text="@string/did_you_like_it_follow_us"
+        android:textColor="#FFFFFF"
+        android:textSize="10sp" />
+
+    <ListView
+        android:id="@+id/sm_listview_categories"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sm_textview_followus"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:id="@+id/sm_last_sync"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:drawableLeft="@android:drawable/stat_notify_sync"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="Last sync: 24 de nov 16:47"
+        android:textColor="#ffffff"
+        android:textSize="10sp" />
+
+</RelativeLayout>

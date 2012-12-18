@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp" >
+
+    <Spinner
+        android:id="@+id/package_carrier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp" />
+
+    <AutoCompleteTextView
+        android:id="@+id/package_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:completionThreshold="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/package_code_prefix"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".2"
+            android:gravity="center_horizontal"
+            android:imeOptions="actionNext"
+            android:inputType="textCapCharacters"
+            android:maxLength="2" >
+        </EditText>
+
+        <EditText
+            android:id="@+id/package_code"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".6"
+            android:gravity="center_horizontal"
+            android:hint="@string/package_code"
+            android:imeOptions="actionNext"
+            android:inputType="numberSigned"
+            android:maxLength="9" />
+
+        <EditText
+            android:id="@+id/package_code_suffix"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".2"
+            android:gravity="center_horizontal"
+            android:inputType="textCapCharacters"
+            android:maxLength="2" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/package_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:hint="@string/description" />
+
+    <Button
+        android:id="@+id/package_button_ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/ok" />
+
+</LinearLayout>

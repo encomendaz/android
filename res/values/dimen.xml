@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<dimen name="package_line_item_size_code">20sp</dimen>
+	<dimen name="package_line_item_size_description">16sp</dimen>
+	<dimen name="package_line_item_size_status">15sp</dimen>    
+</resources>

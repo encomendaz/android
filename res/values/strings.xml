@@ -1,0 +1,39 @@
+<resources>
+
+    <string name="app_name">PackageZ</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">PackageZ</string>
+    <string name="title_dialog_edit">Package</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_share">Share</string>
+    <string name="default_empty_string">(Not Defined)</string>
+    <string name="notdelivered">Not Delivered</string>
+    <string name="delivered">Delivered</string>
+    <string name="days">days</string>
+    <string name="no_trackings_available">No Trackings Available</string>
+    <string name="description">Description</string>
+    <string name="package_code">Package Code</string>
+    <string name="ok">OK</string>
+    <string name="carrier">Carrier</string>
+    <string name="default_category">All Packages</string>
+    <string name="never">Never</string>
+    <string name="fill_postal_code">Fill Package Code</string>
+    <string name="fill_category">Fill Category</string>
+    <string name="status_enroute">Enroute</string>
+    <string name="status_awaiting">Awaiting</string>
+    <string name="status_unknown">Unknown</string>
+    <string name="status_delivered">Delivered</string>
+    <string name="status_delivering">Delivering</string>
+    <string name="status_checked">Checked</string>
+    <string name="status_acceptance">Acceptance</string>
+    <string name="category_archived">Archived</string>
+    <string name="category_my_packages">My Packages</string>
+    <string name="category_sent_packages">Sent Packages</string>
+    <string name="category_christmas_packages">Christmas</string>
+    <string name="deleted">deleted</string>
+    <string name="undo">Undo</string>
+    <string name="action_archive">Archive</string>
+    <string name="package_already_exists">Package Already Exists!</string>
+    <string name="did_you_like_it_follow_us">Did you like it? Follow Us @EncomendaZ</string>
+
+</resources>

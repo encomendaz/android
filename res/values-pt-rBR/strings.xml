@@ -1,0 +1,39 @@
+<resources>
+
+    <string name="app_name">EncomendaZ</string>
+    <string name="menu_settings">Configurações</string>
+    <string name="title_activity_main">EncomendaZ</string>
+    <string name="title_dialog_edit">Encomenda</string>
+    <string name="action_delete">Remover</string>
+    <string name="action_share">Compartilhar</string>
+    <string name="default_empty_string">(Não Informado)</string>
+    <string name="notdelivered">Em Trânsito</string>
+    <string name="delivered">Entregue</string>
+    <string name="days">dias</string>
+    <string name="no_trackings_available">Sem Rastreamentos</string>
+    <string name="description">Descrição</string>
+    <string name="package_code">Código</string>
+    <string name="ok">OK</string>
+    <string name="action_archive">Arquivar</string>
+    <string name="carrier">Transportadora</string>
+    <string name="default_category">Todas Encomendas</string>
+    <string name="never">Nunca</string>
+    <string name="fill_postal_code">Informe o Código</string>
+    <string name="fill_category">Informe a Categoria</string>
+	<string name="status_enroute">Em Trânsito</string>
+	<string name="status_awaiting">Aguardando Retirada</string>
+	<string name="status_unknown">Desconhecido</string>
+	<string name="status_delivered">Entregue</string>
+	<string name="status_delivering">Saiu para Entrega</string>
+	<string name="status_checked">Conferido</string>
+	<string name="status_acceptance">Postado</string>
+	<string name="category_archived">Arquivadas</string>
+	<string name="category_my_packages">Aguardando</string>
+	<string name="category_sent_packages">Enviadas</string>
+	<string name="category_christmas_packages">Natal</string>
+	<string name="package_already_exists">Encomenda já cadastrada!</string>
+	<string name="did_you_like_it_follow_us">Gostou? Então, siga-nos! @EncomendaZ</string>
+    <string name="deleted">removida(s)</string>
+    <string name="undo">Desfazer</string>
+
+</resources>
