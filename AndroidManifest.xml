@@ -12,6 +12,8 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <permission
         android:name="com.alienlabz.packagez.permission.C2D_MESSAGE"
@@ -29,10 +31,9 @@
         </service>
 
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:name=".ui.activity.LoginActivity"
             android:label="@string/title_activity_main"
-            android:screenOrientation="portrait"
-            android:uiOptions="splitActionBarWhenNarrow" >
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,11 +41,23 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".ui.activity.MainActivity"
+            android:label="@string/title_activity_main"
+            android:screenOrientation="portrait"
+            android:uiOptions="splitActionBarWhenNarrow" >
+        </activity>
+        <activity
             android:name=".ui.activity.TrackingsActivity"
             android:label="@string/title_activity_main"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.facebook.LoginActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+        </activity>
 
-        <service android:name=".gcm.GCMIntentService" />
+        <service android:name=".GCMIntentService" />
+        <service android:name=".service.Synchronizer" />
 
         <receiver
             android:name="com.google.android.gcm.GCMBroadcastReceiver"
@@ -69,6 +82,10 @@
         <service
             android:name=".ui.widget.WidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/app_id" />
     </application>
 
 </manifest>

@@ -89,6 +89,7 @@ public class Database extends SQLiteOpenHelper {
 		public static final String FIRST_DATE = "firstdate";
 		public static final String CATEGORY_ID = "category_id";
 		public static final String DELETED = "deleted";
+		public static final String SYNC_FLAG = "syncflag";
 	}
 
 	/**
@@ -140,7 +141,7 @@ public class Database extends SQLiteOpenHelper {
 		packages.append(Package.TABLE_NAME);
 		packages.append("(");
 		packages.append(Package.ID);
-		packages.append(" INTEGER PRIMARY KEY AUTOINCREMENT,");
+		packages.append(" INTEGER PRIMARY KEY,");
 		packages.append(Package.DELETED);
 		packages.append(" INTEGER,");
 		packages.append(Package.CARRIER_ID);
@@ -171,7 +172,7 @@ public class Database extends SQLiteOpenHelper {
 		itens.append(Tracking.TABLE_NAME);
 		itens.append("(");
 		itens.append(Tracking.ID);
-		itens.append(" INTEGER PRIMARY KEY AUTOINCREMENT,");
+		itens.append(" INTEGER PRIMARY KEY,");
 		itens.append(Tracking.DATE);
 		itens.append(" TEXT,");
 		itens.append(Tracking.CITY);
@@ -193,7 +194,7 @@ public class Database extends SQLiteOpenHelper {
 		category.append(Category.TABLE_NAME);
 		category.append("(");
 		category.append(Category.ID);
-		category.append(" INTEGER PRIMARY KEY AUTOINCREMENT,");
+		category.append(" INTEGER PRIMARY KEY,");
 		category.append(Category.CUSTOM);
 		category.append(" INTEGER,");
 		category.append(Category.NAME);
@@ -208,7 +209,7 @@ public class Database extends SQLiteOpenHelper {
 		carrier.append(Carrier.TABLE_NAME);
 		carrier.append("(");
 		carrier.append(Carrier.ID);
-		carrier.append(" INTEGER PRIMARY KEY AUTOINCREMENT,");
+		carrier.append(" INTEGER PRIMARY KEY,");
 		carrier.append(Carrier.NAME);
 		carrier.append(" TEXT,");
 		carrier.append(Carrier.IMAGE_RESOURCE);

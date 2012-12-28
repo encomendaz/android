@@ -1,5 +1,6 @@
 package com.alienlabz.packagez.model;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.ContentValues;
@@ -53,8 +54,8 @@ public class Category extends Model<Category> {
 	public static CursorList<Category> findAllNoDefault(final Context context) {
 		final SQLiteDatabase db = Database.getInstance().getReadableDatabase();
 		return new CursorList<Category>(db.rawQuery("select *  from " + Database.Category.TABLE_NAME + " where "
-				+ Database.Category.NAME + "!=?", new String[] { context.getResources().getString(R.string.default_category) }),
-				Category.class);
+				+ Database.Category.NAME + "!=?",
+				new String[] { context.getResources().getString(R.string.default_category) }), Category.class);
 	}
 
 	/**
@@ -98,6 +99,11 @@ public class Category extends Model<Category> {
 
 	@Override
 	public void fromJSON(JSONObject jsonObject) {
+		try {
+			id = jsonObject.getLong("id");
+			name = jsonObject.getString("name");
+		} catch (JSONException e) {
+		}
 	}
 
 	@Override

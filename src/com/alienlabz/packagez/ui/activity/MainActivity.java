@@ -16,6 +16,7 @@ import android.os.Message;
 import android.os.Messenger;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alienlabz.packagez.App;
+import com.alienlabz.packagez.GCMIntentService;
 import com.alienlabz.packagez.R;
 import com.alienlabz.packagez.model.Carrier;
 import com.alienlabz.packagez.model.Category;
@@ -39,9 +41,12 @@ import com.alienlabz.packagez.ui.adapter.SlidingMenuAdapter;
 import com.alienlabz.packagez.ui.dialog.PackageDialog;
 import com.alienlabz.packagez.ui.fragment.PackagesListFragment;
 import com.alienlabz.packagez.ui.fragment.PackagesListFragment.PackageListener;
+import com.alienlabz.packagez.ui.task.GCMRegisterTask;
 import com.alienlabz.packagez.ui.widget.WidgetService;
 import com.alienlabz.packagez.util.CursorList;
 import com.alienlabz.packagez.util.DateUtil;
+import com.alienlabz.packagez.util.Strings;
+import com.google.android.gcm.GCMRegistrar;
 import com.slidingmenu.lib.SlidingMenu;
 import com.slidingmenu.lib.app.SlidingActivity;
 
@@ -87,6 +92,66 @@ public class MainActivity extends SlidingActivity implements PackageDialog.Packa
 		}
 
 		getFragmentManager().beginTransaction().add(android.R.id.content, packagesListFragment).commit();
+
+		configureGCM();
+	}
+
+	/**
+	 * Configuring Google Cloud Messaging.
+	 */
+	private void configureGCM() {
+		GCMRegistrar.checkDevice(this);
+		GCMRegistrar.checkManifest(this);
+		String regId = GCMRegistrar.getRegistrationId(this);
+
+		if (Strings.isEmpty(regId)) {
+			GCMRegistrar.register(this, GCMIntentService.SENDER_ID);
+		} else {
+			if (GCMRegistrar.isRegisteredOnServer(this)) {
+				Toast.makeText(getApplicationContext(), "Already registered with GCM!", Toast.LENGTH_LONG).show();
+			} else {
+
+				// Calling our server.
+				new GCMRegisterTask(this) {
+
+					protected void onPostExecute(Boolean result) {
+						Toast.makeText(mContext, "N‹o foi poss’vel realizar o registro!", Toast.LENGTH_LONG).show();
+					}
+
+				}.execute("Marlon Silva Carvalho", "marlon.carvalho@gmail.com", regId);
+
+			}
+		}
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (item.getItemId() == R.id.menu_add) {
+			if (dialogEdit == null) {
+				dialogEdit = new PackageDialog();
+			}
+
+			dialogEdit.show(getFragmentManager(), "fragment_edit_package");
+		} else if (item.getItemId() == android.R.id.home) {
+			toggle();
+		} else if (item.getItemId() == R.id.menu_refresh) {
+			callCheckStatusService("");
+		} else if (item.getItemId() == R.id.menu_register) {
+
+		} else if (item.getItemId() == R.id.menu_unregister) {
+			GCMRegistrar.unregister(this);
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	protected void onDestroy() {
+		try {
+			GCMRegistrar.onDestroy(this);
+		} catch (Exception e) {
+			Log.e("UnRegister Receiver Error", "> " + e.getMessage());
+		}
+		super.onDestroy();
 	}
 
 	@Override
@@ -141,6 +206,7 @@ public class MainActivity extends SlidingActivity implements PackageDialog.Packa
 		sm.setBehindOffset(150);
 		sm.setFadeDegree(0.35f);
 		sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
+
 		listViewSlidingMenu.setAdapter(new SlidingMenuAdapter(this, Status.all()));
 		listViewSlidingMenu.setOnItemClickListener(new OnItemClickListener() {
 
@@ -209,21 +275,6 @@ public class MainActivity extends SlidingActivity implements PackageDialog.Packa
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == R.id.menu_add) {
-			if (dialogEdit == null) {
-				dialogEdit = new PackageDialog();
-			}
-			dialogEdit.show(getFragmentManager(), "fragment_edit_package");
-		} else if (item.getItemId() == android.R.id.home) {
-			toggle();
-		} else if (item.getItemId() == R.id.menu_refresh) {
-			callCheckStatusService("");
-		}
-		return super.onOptionsItemSelected(item);
-	}
-
-	@Override
 	public void savePackage(final String code, final String description, final Long carrier, final Category category) {
 
 		long count = Pack.countByCode(this, code);
@@ -235,7 +286,7 @@ public class MainActivity extends SlidingActivity implements PackageDialog.Packa
 		final Pack pack = new Pack();
 		pack.code = code;
 		pack.description = description;
-		pack.carrier = Carrier.findById(carrier.intValue());
+		pack.carrier = Carrier.findById(carrier.longValue());
 		pack.delivered = false;
 		pack.category = category;
 		pack.insert();

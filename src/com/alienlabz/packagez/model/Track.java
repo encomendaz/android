@@ -88,4 +88,5 @@ final public class Track extends Model<Track> {
 		values.put(Database.Tracking.STATUS, status.toString());
 		return values;
 	}
+
 }

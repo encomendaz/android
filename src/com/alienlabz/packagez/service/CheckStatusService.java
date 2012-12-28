@@ -12,7 +12,7 @@ import android.os.RemoteException;
 import com.alienlabz.packagez.model.Pack;
 import com.alienlabz.packagez.model.Status;
 import com.alienlabz.packagez.model.Track;
-import com.alienlabz.packagez.net.Webservice;
+import com.alienlabz.packagez.remote.Webservice;
 import com.alienlabz.packagez.util.CursorList;
 import com.alienlabz.packagez.util.Strings;
 

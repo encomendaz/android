@@ -155,7 +155,7 @@ public class PackageDialog extends DialogFragment {
 
 		});
 
-		carrier.setAdapter(new CarrierAdapter(getActivity(), Carrier.findAll(getActivity())));
+		carrier.setAdapter(new CarrierAdapter(getActivity(), Carrier.findAll()));
 		getDialog().setTitle(R.string.title_dialog_edit);
 
 		return view;

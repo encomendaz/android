@@ -36,4 +36,5 @@ abstract public class Model<T> {
 	 * @return ContentValues.
 	 */
 	public abstract ContentValues toContentValues();
+	
 }

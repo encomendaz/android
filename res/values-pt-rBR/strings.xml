@@ -20,20 +20,24 @@
     <string name="never">Nunca</string>
     <string name="fill_postal_code">Informe o Código</string>
     <string name="fill_category">Informe a Categoria</string>
-	<string name="status_enroute">Em Trânsito</string>
-	<string name="status_awaiting">Aguardando Retirada</string>
-	<string name="status_unknown">Desconhecido</string>
-	<string name="status_delivered">Entregue</string>
-	<string name="status_delivering">Saiu para Entrega</string>
-	<string name="status_checked">Conferido</string>
-	<string name="status_acceptance">Postado</string>
-	<string name="category_archived">Arquivadas</string>
-	<string name="category_my_packages">Aguardando</string>
-	<string name="category_sent_packages">Enviadas</string>
-	<string name="category_christmas_packages">Natal</string>
-	<string name="package_already_exists">Encomenda já cadastrada!</string>
-	<string name="did_you_like_it_follow_us">Gostou? Então, siga-nos! @EncomendaZ</string>
+    <string name="status_enroute">Em Trânsito</string>
+    <string name="status_awaiting">Aguardando Retirada</string>
+    <string name="status_unknown">Desconhecido</string>
+    <string name="status_delivered">Entregue</string>
+    <string name="status_delivering">Saiu para Entrega</string>
+    <string name="status_checked">Conferido</string>
+    <string name="status_acceptance">Postado</string>
+    <string name="category_archived">Arquivadas</string>
+    <string name="category_my_packages">Aguardando</string>
+    <string name="category_sent_packages">Enviadas</string>
+    <string name="category_christmas_packages">Natal</string>
+    <string name="package_already_exists">Encomenda já cadastrada!</string>
+    <string name="did_you_like_it_follow_us">Gostou? Então, siga-nos! @EncomendaZ</string>
     <string name="deleted">removida(s)</string>
     <string name="undo">Desfazer</string>
+    <string name="loading">Carregando!</string>
+    <string name="contacting_facebook">Contactando o Facebook</string>
+    <string name="cant_contact_facebook">Não foi possível contactar o Facebook!</string>
+    <string name="app_id">454775044579482</string>
 
 </resources>

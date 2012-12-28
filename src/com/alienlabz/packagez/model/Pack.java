@@ -1,7 +1,9 @@
 package com.alienlabz.packagez.model;
 
+import java.util.List;
 import java.util.Locale;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.ContentValues;
@@ -12,6 +14,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.alienlabz.packagez.R;
 import com.alienlabz.packagez.database.Database;
+import com.alienlabz.packagez.service.Synchronizer;
 import com.alienlabz.packagez.util.CursorList;
 import com.alienlabz.packagez.util.Strings;
 
@@ -83,8 +86,30 @@ final public class Pack extends Model<Pack> {
 		if (category.id == 0) {
 			category.insert();
 		}
-		id = Database.getInstance().getWritableDatabase()
-				.insertOrThrow(Database.Package.TABLE_NAME, null, toContentValues());
+		ContentValues values = toContentValues();
+		values.put(Database.Package.SYNC_FLAG, Synchronizer.SYNC_INSERT);
+		id = Database.getInstance().getWritableDatabase().insertOrThrow(Database.Package.TABLE_NAME, null, values);
+	}
+
+	public static List<Pack> findDeletions() {
+		final Cursor cursor = Database
+				.getInstance()
+				.getReadableDatabase()
+				.rawQuery(
+						"select * from " + Database.Package.TABLE_NAME + " where " + Database.Package.SYNC_FLAG
+								+ " = ?", new String[] { Synchronizer.SYNC_DELETE });
+		return new CursorList<Pack>(cursor, Pack.class);
+	}
+
+	public static List<Pack> findInsertions() {
+		final Cursor cursor = Database
+				.getInstance()
+				.getReadableDatabase()
+				.rawQuery(
+						"select * from " + Database.Package.TABLE_NAME + " where " + Database.Package.SYNC_FLAG
+								+ " = ?", new String[] { Synchronizer.SYNC_INSERT });
+		return new CursorList<Pack>(cursor, Pack.class);
+
 	}
 
 	/**
@@ -111,8 +136,10 @@ final public class Pack extends Model<Pack> {
 
 		cursor.close();
 
+		ContentValues values = new ContentValues();
+		values.put(Database.Package.SYNC_FLAG, Synchronizer.SYNC_DELETE);
 		Database.getInstance().getWritableDatabase()
-				.delete(Database.Package.TABLE_NAME, Database.Package.DELETED + "=1", null);
+				.update(Database.Package.TABLE_NAME, values, Database.Package.DELETED + "=1", null);
 	}
 
 	public static void undelete() {
@@ -282,11 +309,22 @@ final public class Pack extends Model<Pack> {
 		status = Status.fromString(cursor.getString(cursor.getColumnIndex(Database.Package.LAST_STATUS)));
 		firstDate = cursor.getString((cursor.getColumnIndex(Database.Package.FIRST_DATE)));
 		description = cursor.getString(cursor.getColumnIndex(Database.Package.DESCRIPTION));
-		carrier = Carrier.findById(cursor.getInt(cursor.getColumnIndex(Database.Package.CARRIER_ID)));
+		carrier = Carrier.findById(cursor.getLong(cursor.getColumnIndex(Database.Package.CARRIER_ID)));
 	}
 
 	@Override
 	public void fromJSON(JSONObject jsonObject) {
+		try {
+			id = jsonObject.getLong("id");
+			code = jsonObject.getString("code");
+			delivered = jsonObject.getBoolean("delivered");
+			description = jsonObject.getString("description");
+			category = new Category();
+			category.fromJSON(jsonObject.getJSONObject("category"));
+			carrier = new Carrier();
+			carrier.fromJSON(jsonObject.getJSONObject("carrier"));
+		} catch (JSONException e) {
+		}
 	}
 
 	@Override
